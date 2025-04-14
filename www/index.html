@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TravelMate</title>
+  <link rel="stylesheet" href="onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script defer src="js/index.js"></script>
+  <style>
+  .trip-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 10px;
+}
+  
+    .trip-info {
+      flex: 1;
+      padding-right: 10px;
+    }
+  
+    .trip-destination {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+  
+    .trip-notes {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+  
+    .trip-date {
+      font-size: 13px;
+      color: #999;
+    }
+  </style>
+  
+</head>
+<body>
+
+  <div id="deviceready" style="display: none;"></div>
+
+  <ons-navigator id="myNavigator" page="home.html"></ons-navigator>
+
+  <template id="home.html">
+    <ons-page id="homePage">
+      <ons-toolbar>
+        <div class="center">TravelMate</div>
+      </ons-toolbar>
+
+      <ons-list id="trip-list"></ons-list>
+
+      <ons-fab position="bottom right" onclick="myNavigator.pushPage('add.html')">
+        <ons-icon icon="md-plus"></ons-icon>
+      </ons-fab>
+      <ons-fab position="bottom left" onclick="myNavigator.pushPage('saved.html')">
+        <ons-icon icon="md-collection-bookmark"></ons-icon>
+      </ons-fab>
+    </ons-page>
+  </template>
+
+  <template id="add.html">
+    <ons-page id="addPage">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Back</ons-back-button>
+        </div>
+        <div class="center">Add Trip</div>
+        
+      </ons-toolbar>
+  
+      <div style="padding: 20px;">
+        <ons-input id="destination" modifier="underbar" placeholder="Destination" float></ons-input>
+        <br><br>
+        <textarea id="notes" class="textarea" rows="4" placeholder="Notes" style="width:100%;"></textarea>
+        <br><br>
+  
+        <label for="trip-date">Date:</label>
+        <ons-input id="trip-date" type="date" style="width: 100%;"></ons-input>
+        <br><br>
+  
+        <label for="trip-time">Time:</label>
+        <ons-input id="trip-time" type="time" style="width: 100%;"></ons-input>
+        <br><br>
+  
+        <ons-button onclick="saveTrip()">Save</ons-button>
+        <ons-button onclick="getLocation()">Use Current Location</ons-button>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="saved.html">
+    <ons-page id="savedPage">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Back</ons-back-button>
+        </div>
+        <div class="center">Saved Trips</div>
+      </ons-toolbar>
+
+      <ons-list id="saved-trip-list">
+      </ons-list>
+
+    </ons-page>
+  </template>
+
+</body>
+</html>
